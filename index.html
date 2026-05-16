@@ -1,0 +1,465 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nilotpal Chauhan | Research Papers</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: "Fira Mono", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: #ffffff;
+      color: #111111;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      min-height: 100vh;
+      background: #ffffff;
+      color: #111111;
+    }
+
+    a {
+      color: #0068d4;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      transition: color 0.2s ease;
+    }
+
+    a:hover {
+      color: #003c7a;
+    }
+
+    body, h1, h2, h3, p, time, li {
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      padding: 20px 20px 8px;
+      border-bottom: 1px solid #dde2ea;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .filter-toggle {
+      display: none;
+      border: 1px solid #dde2ea;
+      background: transparent;
+      color: #111111;
+      padding: 10px 12px;
+      border-radius: 12px;
+      font: inherit;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .filter-toggle:hover {
+      background: #f4f7fb;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .brand h1 {
+      font-size: 1.75rem;
+      letter-spacing: -0.04em;
+      font-weight: 700;
+    }
+
+    .brand .meta {
+      font-size: 0.9rem;
+      color: #111111;
+    }
+
+    .hero {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 16px 20px 24px;
+    }
+
+    .hero p {
+      font-size: 0.95rem;
+      max-width: 700px;
+      color: #111111;
+      opacity: 0.92;
+      line-height: 1.45;
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: 1fr 240px;
+      gap: 20px;
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 20px 32px;
+    }
+
+    .content {
+      min-width: 0;
+    }
+
+    .posts {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .post {
+      padding: 16px 0;
+      border-bottom: 1px solid #e9eef5;
+    }
+
+    .post:first-child {
+      padding-top: 24px;
+    }
+
+    .post:last-child {
+      border-bottom: none;
+    }
+
+    .post.featured h2 {
+      font-size: 1.2rem;
+      letter-spacing: -0.02em;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .post h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+
+    .post time {
+      display: block;
+      font-size: 0.78rem;
+      color: #4d5a71;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .post p {
+      font-size: 0.88rem;
+      color: #111111;
+      opacity: 0.88;
+      max-width: 780px;
+      margin-bottom: 8px;
+      line-height: 1.35;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 24px;
+      align-self: start;
+      padding: 16px;
+      border: 1px solid #e5ecf4;
+      background: #fbfcff;
+      border-radius: 14px;
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    .sidebar h3 {
+      margin-bottom: 12px;
+      font-size: 1rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #111111;
+    }
+
+    .sidebar .section {
+      margin-bottom: 20px;
+    }
+
+    .sidebar button,
+    .sidebar .item {
+      width: 100%;
+      display: block;
+      text-align: left;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: none;
+      background: transparent;
+      color: #111111;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background 0.18s ease, color 0.18s ease;
+    }
+
+    .sidebar button:hover,
+    .sidebar .item:hover {
+      background: #e8f1ff;
+    }
+
+    .sidebar .active {
+      background: #d8e6ff;
+      color: #002d5c;
+    }
+
+    .sidebar .item {
+      margin-bottom: 4px;
+    }
+
+    .sidebar .label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 0.82rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #63718c;
+    }
+
+    .footer {
+      grid-column: 1 / -1;
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 20px 18px;
+      color: #4b5563;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 1024px) {
+      main { grid-template-columns: 1fr; }
+      .sidebar {
+        position: fixed;
+        top: 72px;
+        right: 16px;
+        width: min(320px, calc(100% - 32px));
+        max-height: calc(100vh - 88px);
+        overflow: auto;
+        transform: translateX(110%);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform 0.22s ease, opacity 0.22s ease;
+        z-index: 20;
+      }
+
+      .sidebar.open {
+        transform: translateX(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .filter-toggle {
+        display: inline-flex;
+      }
+    }
+
+    @media (max-width: 640px) {
+      header, .hero, main, .footer { padding-left: 14px; padding-right: 14px; }
+      .brand h1 { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <h1>Nilotpal Chauhan</h1>
+      <div class="meta"><a href="http://x.com/nilxcy" target="_blank" rel="noopener">x.com/nilxcy</a></div>
+    </div>
+    <button class="filter-toggle" id="toggleFilter" type="button" aria-expanded="false" aria-label="Open filter menu">☰</button>
+  </header>
+  <section class="hero">
+    <p>Research archive with recent work first. Use the year and month controls to narrow the list, starting from the earliest published month within each range.</p>
+  </section>
+  <main>
+    <section class="content">
+      <ul class="posts" id="posts"></ul>
+    </section>
+    <aside class="sidebar" id="sidebar"></aside>
+  </main>
+  <footer class="footer">
+    <p>Create new posts with <a href="post-template.html" target="_blank" rel="noopener">post-template.html</a>, then add the entry to this page. The filter shows only the range from first publication to last, with no earlier months.</p>
+  </footer>
+  <script>
+    const posts = [
+      { title: 'Adaptive AI Architectures for Real-Time Inference', date: '2025-11-04', summary: 'Modular inference pipeline for latency-critical production systems.', url: 'paper-1.html' },
+      { title: 'Distributed Systems Resilience through Predictive Scheduling', date: '2025-07-18', summary: 'Predictive load control for cloud-native availability.', url: 'paper-2.html' },
+      { title: 'Cognitive Security Models for Data Integrity', date: '2024-09-23', summary: 'Behavioral validation with cryptographic data integrity.', url: 'paper-3.html' },
+      { title: 'Automated Model Governance for Research Pipelines', date: '2024-06-15', summary: 'Governance layer that audits AI outputs in research workflows.', url: 'paper-4.html' },
+      { title: 'Signal-Level Calibration for Edge Inference', date: '2024-03-08', summary: 'Edge model calibration across unstable sensor inputs.', url: 'paper-5.html' },
+      { title: 'Quantitative Privacy Metrics for Dataset Sharing', date: '2023-11-22', summary: 'A metric suite for privacy-safe academic data exchange.', url: 'paper-6.html' },
+      { title: 'Latency Forecasting in Streaming Data Networks', date: '2023-08-14', summary: 'Real-time latency prediction for reactive stream systems.', url: 'paper-7.html' },
+      { title: 'Secure State Synchronization for Distributed Agents', date: '2023-05-03', summary: 'Consensus-aware synchronization for agent state propagation.', url: 'paper-8.html' },
+      { title: 'Runtime Anomaly Detection in Computational Clusters', date: '2023-01-27', summary: 'Operational anomaly detection tuned for compute clusters.', url: 'paper-9.html' },
+      { title: 'Knowledge Graph Compression for Large-Scale Research', date: '2022-10-19', summary: 'Compression techniques for scalable research knowledge graphs.', url: 'paper-10.html' }
+    ];
+
+    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const postsContainer = document.getElementById('posts');
+    const sidebar = document.getElementById('sidebar');
+    const filterToggle = document.getElementById('toggleFilter');
+    const sortedPosts = [...posts].sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    const groupedByYear = sortedPosts.reduce((acc, item) => {
+      const year = item.date.slice(0, 4);
+      const month = Number(item.date.slice(5, 7));
+      acc[year] = acc[year] || { items: [], monthRange: [] };
+      acc[year].items.push({ ...item, month });
+      return acc;
+    }, {});
+
+    const years = Object.keys(groupedByYear).sort((a, b) => Number(b) - Number(a));
+    const singleYearMode = years.length === 1;
+    let activeYear = null;
+    let activeMonth = null;
+
+    function updateFilterToggle() {
+      if (!filterToggle) return;
+      const expanded = sidebar.classList.contains('open');
+      filterToggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+      filterToggle.textContent = expanded ? '×' : '☰';
+    }
+
+    function closeSidebarOnMobile() {
+      sidebar.classList.remove('open');
+      updateFilterToggle();
+    }
+
+    if (filterToggle) {
+      filterToggle.addEventListener('click', () => {
+        sidebar.classList.toggle('open');
+        updateFilterToggle();
+      });
+    }
+
+    function buildMonthRanges() {
+      years.forEach(year => {
+        const months = groupedByYear[year].items.map(item => item.month);
+        const minMonth = Math.min(...months);
+        const maxMonth = Math.max(...months);
+        groupedByYear[year].monthRange = [];
+        for (let month = minMonth; month <= maxMonth; month += 1) {
+          groupedByYear[year].monthRange.push({ value: month, label: monthNames[month - 1] });
+        }
+      });
+    }
+
+    function filterPosts() {
+      return sortedPosts.filter(post => {
+        if (!activeYear) return true;
+        const [year, month] = post.date.split('-');
+        if (activeMonth) {
+          return year === activeYear && Number(month) === activeMonth;
+        }
+        return year === activeYear;
+      });
+    }
+
+    function renderPosts() {
+      const currentPosts = filterPosts();
+      if (!currentPosts.length) {
+        postsContainer.innerHTML = '<li class="post"><p>No articles published for this selection.</p></li>';
+        return;
+      }
+      postsContainer.innerHTML = currentPosts.map((post, index) => `
+        <li class="post ${index === 0 && !activeMonth ? 'featured' : ''}">
+          <h2><a href="${post.url}" target="_blank" rel="noopener">${post.title}</a></h2>
+          <time datetime="${post.date}">${formatDate(post.date)}</time>
+          <p>${post.summary}</p>
+        </li>
+      `).join('');
+    }
+
+    function formatDate(date) {
+      const [year, month, day] = date.split('-');
+      return `${monthNames[Number(month) - 1]} ${Number(day)}, ${year}`;
+    }
+
+    function renderSidebar() {
+      sidebar.innerHTML = '';
+      const allButtonTop = document.createElement('button');
+      allButtonTop.type = 'button';
+      allButtonTop.className = !activeYear && !activeMonth ? 'active' : '';
+      allButtonTop.textContent = 'All posts';
+      allButtonTop.onclick = () => {
+        activeYear = null;
+        activeMonth = null;
+        renderSidebar();
+        renderPosts();
+        closeSidebarOnMobile();
+      };
+      sidebar.appendChild(allButtonTop);
+
+      const title = document.createElement('h3');
+      title.textContent = singleYearMode ? 'Months' : 'Year / Month';
+      sidebar.appendChild(title);
+
+      if (!singleYearMode) {
+        years.forEach(year => {
+          const yearSection = document.createElement('div');
+          yearSection.className = 'section';
+
+          const label = document.createElement('span');
+          label.className = 'label';
+          label.textContent = year;
+          yearSection.appendChild(label);
+
+          const allButton = document.createElement('button');
+          allButton.type = 'button';
+          allButton.className = activeYear === year && !activeMonth ? 'active' : '';
+          allButton.textContent = `All ${year}`;
+          allButton.onclick = () => {
+            activeYear = year;
+            activeMonth = null;
+            renderSidebar();
+            renderPosts();
+            closeSidebarOnMobile();
+          };
+          yearSection.appendChild(allButton);
+
+          groupedByYear[year].monthRange.forEach(month => {
+            const monthButton = document.createElement('button');
+            monthButton.type = 'button';
+            monthButton.className = activeYear === year && activeMonth === month.value ? 'active' : '';
+            monthButton.textContent = month.label;
+            monthButton.onclick = () => {
+              activeYear = year;
+              activeMonth = month.value;
+              renderSidebar();
+              renderPosts();
+              closeSidebarOnMobile();
+            };
+            yearSection.appendChild(monthButton);
+          });
+
+          sidebar.appendChild(yearSection);
+        });
+      } else {
+        const monthSection = document.createElement('div');
+        monthSection.className = 'section';
+        groupedByYear[years[0]].monthRange.forEach(month => {
+          const monthButton = document.createElement('button');
+          monthButton.type = 'button';
+          monthButton.className = activeMonth === month.value ? 'active' : '';
+          monthButton.textContent = month.label;
+          monthButton.onclick = () => {
+            activeMonth = month.value;
+            renderSidebar();
+            renderPosts();
+            closeSidebarOnMobile();
+          };
+          monthSection.appendChild(monthButton);
+        });
+        sidebar.appendChild(monthSection);
+      }
+    }
+
+    buildMonthRanges();
+    renderSidebar();
+    renderPosts();
+  </script>
+</body>
+</html>

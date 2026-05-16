@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Backend Content Workflow | Nilotpal Chauhan</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: #ffffff;
+      color: #111111;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #ffffff;
+      color: #111111;
+      line-height: 1.7;
+      padding: 28px;
+    }
+
+    header {
+      max-width: 900px;
+      margin: 0 auto 24px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(2rem, 3vw, 2.4rem);
+      letter-spacing: -0.04em;
+    }
+
+    p {
+      margin: 0 0 18px;
+      max-width: 900px;
+      color: #111111;
+    }
+
+    .section {
+      max-width: 900px;
+      margin: 0 auto 24px;
+      padding: 24px;
+      border: 1px solid #e7ecf5;
+      border-radius: 16px;
+      background: #fbfcff;
+    }
+
+    .section h2 {
+      margin-top: 0;
+      font-size: 1.2rem;
+    }
+
+    code {
+      display: inline-block;
+      padding: 3px 6px;
+      background: #f3f7ff;
+      color: #111111;
+      border-radius: 6px;
+      font-size: 0.95rem;
+    }
+
+    pre {
+      margin: 14px 0 0;
+      padding: 18px;
+      border-radius: 14px;
+      background: #f0f5ff;
+      overflow-x: auto;
+      font-family: Consolas, "Liberation Mono", Menlo, monospace;
+      color: #111111;
+      line-height: 1.5;
+    }
+
+    a {
+      color: #0068d4;
+      text-decoration: underline;
+    }
+
+    a:hover {
+      color: #003c7a;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Backend Content Workflow</h1>
+    <p>Use this page as the content authoring workflow. The homepage is intentionally minimal. New papers should be added by creating a new HTML page, not by editing the home page layout.</p>
+  </header>
+
+  <section class="section">
+    <h2>Step 1: Create a new post page</h2>
+    <p>Open <a href="post-template.html" target="_blank" rel="noopener">post-template.html</a>. Save a copy with a clear filename like <code>paper-4.html</code>.</p>
+  </section>
+
+  <section class="section">
+    <h2>Step 2: Add your paper content</h2>
+    <p>Replace the placeholder title, date, summary, and full content in the copied page. Keep the format consistent with the example.</p>
+  </section>
+
+  <section class="section">
+    <h2>Step 3: Register the post on the homepage</h2>
+    <p>After the new page exists, add a new entry to <code>index.html</code> inside the post list:</p>
+    <pre>&lt;li class="post"&gt;
+  &lt;h2&gt;&lt;a href="paper-4.html"&gt;Your Paper Title&lt;/a&gt;&lt;/h2&gt;
+  &lt;time datetime="2026-05-16"&gt;May 16, 2026&lt;/time&gt;
+  &lt;p&gt;One-line description of the research and what it shows.&lt;/p&gt;
+  &lt;a href="paper-4.html" target="_blank" rel="noopener"&gt;Read full post&lt;/a&gt;
+&lt;/li&gt;</pre>
+  </section>
+
+  <section class="section">
+    <h2>Step 4: Keep the homepage clean</h2>
+    <p>Do not add post creation forms or extra cards on the homepage. The site should remain a clean, black-text research archive with links to dedicated post pages.</p>
+  </section>
+</body>
+</html>

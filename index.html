@@ -368,7 +368,7 @@
       }
       postsContainer.innerHTML = currentPosts.map((post, index) => `
         <li class="post ${index === 0 && !activeMonth ? 'featured' : ''}">
-          <h2><a href="${post.url}" target="_blank" rel="noopener">${post.title}</a></h2>
+          <h2><a href="${post.url}">${post.title}</a></h2>
           <time datetime="${post.date}">${formatDate(post.date)}</time>
           <p>${post.summary}</p>
         </li>
